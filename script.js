@@ -99,9 +99,8 @@ async function fetchTopHeadlines(category = "general") {
   newsType.textContent = `Berita paling terkini`;
   showLoading();
 
-  const url = `${BASE_URL}/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}&apiKey=${API_KEY}&category=${encodeURIComponent(
-    category
-  )}`;
+  const proxy = "https://cors-anywhere.herokuapp.com/";
+  const url = proxy + `${BASE_URL}/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}&apiKey=${API_KEY}&category=${encodeURIComponent(category)}`;
 
   try {
     const res = await fetch(url);
@@ -130,10 +129,8 @@ async function searchNews(query) {
   newsType.textContent = `Hasil pencarian untuk "${trimmed}"`;
   showLoading();
 
-  const url = `${BASE_URL}/everything?q=${encodeURIComponent(
-    trimmed
-  )}&pageSize=${pageSize}&page=${currentPage}&sortBy=publishedAt&apiKey=${API_KEY}`;
-
+const url = proxy + `${BASE_URL}/everything?q=${encodeURIComponent(trimmed)}&pageSize=${pageSize}&page=${currentPage}&sortBy=publishedAt&apiKey=${API_KEY}`;
+	
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
