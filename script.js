@@ -1,5 +1,5 @@
 const API_KEY = "cfba98e377664fd3901e0897946a56dc";
-const BASE_URL = "https://newsapi.org/v2";
+const BASE_URL = 'https://news-proxy-server.onrender.com/api';
 
 const newsDetails = document.getElementById("newsdetails");
 const newsType = document.getElementById("newsType");
@@ -99,8 +99,7 @@ async function fetchTopHeadlines(category = "general") {
   newsType.textContent = `Berita paling terkini`;
   showLoading();
 
-  const proxy = "https://cors-anywhere.herokuapp.com/";
-  const url = proxy + `${BASE_URL}/top-headlines?country=us&pageSize=${pageSize}&page=${currentPage}&apiKey=${API_KEY}&category=${encodeURIComponent(category)}`;
+  const url = `${BASE_URL}/news?category=${encodeURIComponent(category)}&country=us&page=${currentPage}&pageSize=${pageSize}`;
 
   try {
     const res = await fetch(url);
@@ -128,8 +127,8 @@ async function searchNews(query) {
   const trimmed = query.trim();
   newsType.textContent = `Hasil pencarian untuk "${trimmed}"`;
   showLoading();
-
-const url = proxy + `${BASE_URL}/everything?q=${encodeURIComponent(trimmed)}&pageSize=${pageSize}&page=${currentPage}&sortBy=publishedAt&apiKey=${API_KEY}`;
+	
+  const url = `${BASE_URL}/search?q=${encodeURIComponent(trimmed)}&page=${currentPage}&pageSize=${pageSize}`;
 	
   try {
     const res = await fetch(url);
