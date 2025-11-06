@@ -126,7 +126,7 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
 
-  const response = await fetch("http://localhost:3000/send", {
+  const response = await fetch("https://mengrita-website-berita.vercel.app", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, email, message }),
